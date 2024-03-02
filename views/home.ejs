@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="<%=url%>/css/output.css">
+    <title>Home</title>
+</head>
+<body>
+    <div class="flex flex-col items-center gap-8 justify-center pt-14 mx-8">
+        <h1 class="text-xl font-semibold text-center pl-16">
+            URL Shortener
+        </h1>
+        <div class="flex gap-16 flex-col sm:flex-row pl-16">
+            <div class="flex flex-col gap-4">
+                <h1 class="text-center text-xl">
+                    URL Shortener
+                </h1>
+                <div class="p-8 bg-white/80 rounded-md shadow-md">
+                    <form 
+                        action="/url" 
+                        method="POST" 
+                        class="flex flex-col gap-4"
+                    >
+                        <div class="flex gap-4">
+                            <label>Enter your URL</label>
+                            <input 
+                                type="text" 
+                                required
+                                name="url"
+                                placeholder="https://abc.com"
+                                class="border-b border-black text-center focus:outline-none w-64"
+                            >
+                        </div>
+                        <button type="submit" class="bg-black text-white p-2 rounded-md mx-36">
+                            Generate
+                        </button>
+                    </form>
+                </div>
+                <% if (locals.id) { %>
+                    <p class="bg-emerald-400/70 text-emerald-900 p-4 rounded-md text-center">
+                        Url Generated : 
+                        <a href=<%= `${url}/url/${id}`%> target="_blank">
+                            <%= `${url}/url/${id}` %>
+                        </a>
+                    </p>
+                <% } %>
+            </div>
+            <div class="flex flex-col gap-4">
+                <h1 class="text-center text-xl">
+                    Check clicks on your shorten URL
+                </h1>
+                <div class="p-8 bg-white/80 rounded-md shadow-md">
+                    <form 
+                        action="/url/analytics"
+                        method="POST" 
+                        class="flex flex-col gap-4"
+                    >
+                        <div class="flex gap-4">
+                            <label>Enter your URL</label>
+                            <input 
+                                type="text" 
+                                required
+                                name="url"
+                                placeholder="https://abc.com"
+                                class="border-b border-black text-center focus:outline-none w-64"
+                            >
+                        </div>
+                        <button type="submit" class="bg-black text-white p-2 rounded-md mx-36">
+                            Check
+                        </button>
+                    </form>
+                </div>
+                <% if (locals.totalClicks) { %>
+                    <p class="bg-emerald-400/70 text-emerald-900 p-4 rounded-md text-center">
+                        Total clicks : <%= totalClicks %>
+                    </p>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
