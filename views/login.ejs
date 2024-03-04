@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="<%=url%>/css/output.css">
+    <title>Login</title>
+</head>
+<body class="flex items-center justify-center">
+    <div class="flex items-center justify-center flex-col w-[100%]">
+        <h1 class="text-lg font-semibold">
+            Login
+        </h1>
+        <form 
+            action="/user/login" 
+            method="POST" 
+            class="flex flex-col gap-4 mt-8"
+            autocomplete="off"
+        >
+            <input 
+                type="email" 
+                placeholder="Enter your email" 
+                class="border-b border-black text-center focus:outline-none w-fit"
+                required
+                name="email"    
+            >
+            <input 
+                type="password" 
+                placeholder="Enter your password" 
+                class="border-b border-black text-center focus:outline-none"
+                required
+                name="password"
+            >
+            <button
+                type="submit"
+                class="bg-black text-white rounded-md p-1 mx-8"
+            >
+                Login
+            </button>
+        </form>
+        <% if (locals.error) { %>
+            <p class="bg-rose-500/70 text-red-900 p-2 mt-2 rounded-md">
+                <%= error %>
+            </p>
+        <% } %>
+    </div>
+</body>
+</html>
